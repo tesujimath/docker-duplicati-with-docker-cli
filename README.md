@@ -2,7 +2,7 @@
 
 This container adds the Docker CLI to [linuxserver/duplicati](https://hub.docker.com/r/linuxserver/duplicati).
 
-This enables pre-backup scripts to run things in other containers.  For example, running `mysqldump` in your MariaDB container before Duplicati backs up the resulting dump files.  (If this is your use case, consider using `mysqldump --tab` to backup an uncompressed table per file, to mitigate de-duplication issues.)
+This enables for example pre-backup scripts to run things in other containers.  For example, running `mysqldump` in your MariaDB container before Duplicati backs up the resulting dump files.  (If this is your use case, consider using `mysqldump --tab` to backup an uncompressed table per file, to mitigate de-duplication issues.)
 
 In order to use `docker` from within the container, ensure to mount the docker socket `/var/run/docker.sock` into the container.  Note the security implications of this:  your Duplicati container is then trusted with root access to all your other containers.
 
@@ -28,5 +28,5 @@ And here's an example script fragment to run your backup script `backup-database
 cname="db"
 cid=`docker ps --filter name=$cname --format '{{ .ID }}'`
 test -n "$cid" || { echo >&2 "can't find $cname container - abort"; exit 1; }
-exec docker exec $opts $cid backup-databases
+exec docker exec $cid backup-databases
 ```
