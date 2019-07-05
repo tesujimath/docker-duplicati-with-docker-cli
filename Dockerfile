@@ -1,7 +1,7 @@
-ARG DUPLICATI_RELEASE="v2.0.4.5-2.0.4.5_beta_2018-11-28-ls24"
+ARG DUPLICATI_RELEASE
 FROM linuxserver/duplicati:$DUPLICATI_RELEASE
 ARG DUPLICATI_RELEASE
-ARG DOCKER_RELEASE="18.09.7~3-0"
+ARG DOCKER_RELEASE
 
 LABEL maintainer "Simon Guest <simon.guest@tesujimath.org>"
 
